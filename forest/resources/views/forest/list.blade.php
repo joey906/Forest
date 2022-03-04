@@ -9,14 +9,16 @@
               <th>記事番号</th>
               <th>日付</th>
               <th>タイトル</th>
-              <th></th>
+              <th>更新</th>
           </tr>
+          @foreach($forests as $forest)
           <tr>
-              <td>1</td>
-              <td>2020/06/30</td>
-              <td>テスト</td>
-              <td></td>
+              <td>{{$forest->id}}</td>
+              <td>{{$forest->ja}}</td>
+              <td>{{$forest->en}}</td>
+              <td>{{$forest->updated_at}}</td>
           </tr>
+          @endforeach
       </table>
   </div>
 </div>

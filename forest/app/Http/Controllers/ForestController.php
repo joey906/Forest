@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Forest;
 
 class ForestController extends Controller
 {
@@ -12,6 +13,8 @@ class ForestController extends Controller
      * @return view
      */
     public function top() {
-        return view('forest.list');
+        $forests = Forest::all();
+        
+        return view('forest.list',['forests' => $forests]);
     }
 }
