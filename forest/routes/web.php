@@ -18,3 +18,5 @@ Route::get('/', function () {
 */
 
 Route::get('/', 'ForestController@top')->name('top');
+
+Route::get('/forest/{id}', 'ForestController@showDetail')->name('show');
