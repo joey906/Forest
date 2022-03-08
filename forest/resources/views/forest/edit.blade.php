@@ -1,11 +1,12 @@
 @extends('layout')
-@section('title', 'ブログ投稿')
+@section('title', 'ブログ編集')
 @section('content')
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
-        <h2>ブログ投稿フォーム</h2>
-        <form method="POST" action="{{ route('store') }}" onSubmit="return checkSubmit()">
+        <h2>ブログ編集フォーム</h2>
+        <form method="POST" action="{{ route('update') }}" onSubmit="return checkSubmit()">
             @csrf
+            <input type="hidden" name="id" value="{{ $forest->id }}">
             <div class="form-group">
                 <label for="title">
                     タイトル
@@ -14,7 +15,7 @@
                     id="title"
                     name="en"
                     class="form-control"
-                    value="{{ old('en') }}"
+                    value="{{ $forest->en }}"
                     type="text"
                 >
                 @if ($errors->has('en'))
@@ -32,7 +33,7 @@
                     name="ja"
                     class="form-control"
                     rows="4"
-                >{{ old('ja') }}</textarea>
+                >{{ $forest->ja }}</textarea>
                 @if ($errors->has('ja'))
                     <div class="text-danger">
                         {{ $errors->first('ja') }}
@@ -44,7 +45,7 @@
                     キャンセル
                 </a>
                 <button type="submit" class="btn btn-primary">
-                    投稿する
+                    更新する
                 </button>
             </div>
         </form>
@@ -52,7 +53,7 @@
 </div>
 <script>
 function checkSubmit(){
-if(window.confirm('送信してよろしいですか？')){
+if(window.confirm('更新してよろしいですか？')){
     return true;
 } else {
     return false;

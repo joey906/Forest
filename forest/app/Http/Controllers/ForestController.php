@@ -64,4 +64,47 @@ class ForestController extends Controller
         \Session::flash('err_msg', 'ブログを登録しました');
         return redirect(route('top'));
     }
+
+    /**
+     * 詳細画面表示
+     * @param int $id
+     * @return view
+     */
+
+    public function showEdit($id) {
+        $forest = Forest::find($id);
+
+        if (is_null($forest)) {
+            \Session::flash('err_msg', 'データがありません');
+            return redirect(route('top'));
+        }
+        
+        return view('forest.edit',['forest' => $forest]);
+    }
+
+     /**
+     * ブログを更新する
+     * @return view
+     */
+    public function exeUpdate(ForestRequest $request) {
+        $inputs = $request->all();
+
+        \DB::beginTransaction();
+        try {
+            $forest = Forest::find($inputs['id']);
+            $forest->fill([
+                'en' => $inputs['en'],
+                'ja' => $inputs['ja']
+            ]);
+            $forest->save();
+            \DB::commit();
+        } catch(\Throwable $e)
+         {
+             \DB::rollback();
+             abort(500);
+        }
+        
+        \Session::flash('err_msg', 'ブログを更新しました');
+        return redirect(route('top'));
+    }
 }

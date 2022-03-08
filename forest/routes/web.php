@@ -27,3 +27,9 @@ Route::post('/forest/store', 'ForestController@exeStore')->name('store');
 
 //Forest詳細表示
 Route::get('/forest/{id}', 'ForestController@showDetail')->name('show');
+
+//Forest編集画面を表示
+Route::get('/forest/edit/{id}', 'ForestController@showEdit')->name('edit');
+
+//Forest登録
+Route::post('/forest/update', 'ForestController@exeUpdate')->name('update');

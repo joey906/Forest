@@ -14,12 +14,14 @@
               <th>記事番号</th>
               <th>タイトル</th>
               <th>更新</th>
+              <th></th>
           </tr>
           @foreach($forests as $forest)
           <tr>
               <td>{{$forest->id}}</td>
               <td><a href="/forest/{{ $forest->id }}">{{$forest->en}}</a></td>
               <td>{{$forest->updated_at}}</td>
+              <td><button type="button" class="btn btn-primary" onclick="location. href='/forest/edit/{{ $forest->id }}'">編集</button></td>
           </tr>
           @endforeach
       </table>
