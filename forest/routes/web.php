@@ -33,3 +33,6 @@ Route::get('/forest/edit/{id}', 'ForestController@showEdit')->name('edit');
 
 //Forest登録
 Route::post('/forest/update', 'ForestController@exeUpdate')->name('update');
+
+//Delete
+Route::post('/forest/delete/{id}', 'ForestController@exeDelete')->name('delete');
